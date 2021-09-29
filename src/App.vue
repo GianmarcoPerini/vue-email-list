@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ul>
+      <li v-for="el in mailingList" :key="el">{{el}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+
+  data: function(){
+    return{
+      mailingList: []
+
+    }
+  },
+  mounted: function(){
+    for(let i = 0; i < 10; i++){
+      axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then(res => {
+      this.mailingList.push(res.data.response)});
+    }
   }
 }
 </script>
