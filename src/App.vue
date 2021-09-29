@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ul>
-      <li v-for="el in mailingList" :key="el">{{el}}</li>
+      <li v-show="mailingList.length == 10" v-for="el in mailingList" :key="el">{{el}}</li>
     </ul>
   </div>
 </template>
